@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fashion Wizard | Confirm Order</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="shortcut icon" href="./assets/images/logo.jpeg" type="image/svg+xml">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="./assets/css/confirm.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Bottom Bar Start -->
+    <div class="bottom-bar">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="./assets/images/logo.jpeg" alt="Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="user">
+                        <a href="cart.html" class="btn cart">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bottom Bar End -->
+
+    <!-- Confirm Order Start -->
+    <div class="confirm-order">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="confirm-order-inner">
+                        <h2>Confirm Order</h2>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="order-items">
+                                    <!-- Order items will be injected here by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-primary" onclick="proceedToPayment()">Proceed to Payment</button>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="checkout-summary">
+                        <h1>Order Summary</h1>
+                        <p class="sub-total">Sub Total<span id="sub-total">Rp. 0</span></p>
+                        <p class="ship-cost">Shipping Cost<span>Rp. 25,000</span></p>
+                        <h2>Grand Total<span id="grand-total">Rp. 0</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Confirm Order End -->
+
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col text-center">
+                    <p>Fashion Wizard</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script>
+        function formatRupiah(amount) {
+            return 'Rp. ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        function loadOrderFromLocalStorage() {
+            const orderItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const orderItemsContainer = document.getElementById('order-items');
+            orderItemsContainer.innerHTML = '';
+
+            let subTotal = 0;
+
+            orderItems.forEach(item => {
+                const row = document.createElement('tr');
+                const total = item.price * item.quantity;
+                subTotal += total;
+
+                row.innerHTML = `
+                    <td>
+                        <div class="img">
+                            <a href="product.html?name=${encodeURIComponent(item.title)}"><img src="${item.imgSrc}" alt="Image" class="order-img"></a>
+                            <p>${item.title}</p>
+                        </div>
+                    </td>
+                    <td class="price">${formatRupiah(item.price)}</td>
+                    <td class="quantity">${item.quantity}</td>
+                    <td class="total">${formatRupiah(total)}</td>
+                `;
+                orderItemsContainer.appendChild(row);
+            });
+
+            document.getElementById('sub-total').textContent = formatRupiah(subTotal);
+            document.getElementById('grand-total').textContent = formatRupiah(subTotal +
+            25000); // 25,000 for shipping cost
+        }
+
+        function proceedToPayment() {
+            window.location.href = 'payment.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadOrderFromLocalStorage();
+        });
+    </script>
+
+    <style>
+        .order-img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</body>
+
+</html>

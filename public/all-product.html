@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Wizard</title>
+    <!-- box icons  -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <!-- styles  -->
+    <link rel="stylesheet" href="./assets/css/all-product.css">
+    <style>
+        .nav .back-button {
+            margin-right: 20px;
+            padding: 5px 10px;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav .back-button i {
+            font-size: 24px;
+        }
+
+        .category-dropdown-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+        }
+
+        .category-dropdown {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 0 auto;
+        }
+
+        .category-dropdown select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            min-width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER  -->
+    <header>
+        <!-- NAV  -->
+        <div class="nav container">
+            <!-- BACK BUTTON -->
+            <button onclick="goBack()" class="back-button">
+                <i class='bx bx-chevron-left'></i>
+            </button>
+            <a class="logo"><span>All </span>Product</a>
+            <!-- CART ICON  -->
+            <i class='bx bx-shopping-bag' id="cart-icon"></i>
+
+            <!-- CART  -->
+            <div class="cart">
+                <h2 class="cart-title">Your Cart</h2>
+
+                <!-- CONTENT  -->
+                <div class="cart-content">
+                </div>
+
+                <!-- TOTAL   -->
+                <div class="total">
+                    <div class="total-title">Total</div>
+                    <div class="total-price">Rp 0</div>
+                </div>
+                <!-- BUY BUTTON  -->
+                <button type="button" class="btn-buy">Buy Now</button>
+                <!-- CART CLOSE  -->
+                <i class='bx bx-x' id="cart-close"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- CATEGORY DROPDOWN -->
+    <div class="category-dropdown-container">
+        <div class="category-dropdown">
+            <label for="category">Choose a category:</label>
+            <select id="category">
+                <option value="all">All</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- SHOP SECTION  -->
+    <section class="shop container">
+        <!-- CONTENT  -->
+        <div id="product-list" class="shop-content"></div>
+    </section>
+
+    <!-- link js  -->
+    <script src="assets/js/all-product.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>

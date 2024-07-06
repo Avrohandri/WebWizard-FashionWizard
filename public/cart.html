@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Wizard | Cart</title>
+    <link rel="stylesheet" href="./assets/css/cart.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="bottom-bar">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <div class="search">
+                        <!-- <input type="text" placeholder="Search">
+                        <button><i class="fa fa-search"></i></button> -->
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="./assets/images/logo.jpeg" alt="Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="user">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-page">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="cart-page-inner">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th>Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-middle" id="cart-items">
+                                    <!-- Cart items will be injected here by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="cart-page-inner">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- <div class="coupon">
+                                    <input type="text" placeholder="Coupon Code">
+                                    <button>Apply Code</button>
+                                </div> -->
+                            </div>
+                            <div class="col-md-12">
+                                <div class="cart-summary">
+                                    <div class="cart-content">
+                                        <h1>Cart Summary</h1>
+                                        <p>Sub Total<span id="sub-total">Rp. 0</span></p>
+                                        <p>Shipping Cost<span>Rp. 25.000</span></p>
+                                        <h2>Grand Total<span id="grand-total">Rp. 25.000</span></h2>
+                                    </div>
+                                    <div class="cart-btn">
+                                        <button id="update-cart" onclick="location.href='all-product.html'">Update
+                                            Cart</button>
+                                        <button id="checkout" onclick="location.href='checkout.html'">Checkout</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="./assets/js/cart.js"></script>
+</body>
+
+</html>

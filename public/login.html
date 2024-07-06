@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/styleLogin.css">
+    <title>Fashion Wizard | Login</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./../MAIN/assets/images/logo.jpeg" type="image/svg+xml">
+</head>
+
+<body>
+
+    <div class="form">
+
+        <ul class="tab-group">
+            <li class="tab active"><a href="#signup">Sign Up</a></li>
+            <li class="tab"><a href="#login">Log In</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="signup">
+                <h1>Sign Up for Free</h1>
+
+                <form id="register-form" method="post">
+
+                    <div class="top-row">
+                        <div class="field-wrap">
+                            <label for="register-username">
+                                Username<span class="req">*</span>
+                            </label>
+                            <input id="register-username" name="username" type="text" required autocomplete="off" />
+                        </div>
+
+                        <div class="field-wrap">
+                            <label for="register-email">
+                                Email<span class="req">*</span>
+                            </label>
+                            <input id="register-email" name="email" type="email" required autocomplete="off" />
+                        </div>
+                    </div>
+
+                    <div class="field-wrap">
+                        <label for="register-password">
+                            Password<span class="req">*</span>
+                        </label>
+                        <input id="register-password" name="password" type="password" required autocomplete="off" />
+                    </div>
+
+                    <div class="field-wrap">
+                        <label for="confirm-password">
+                            Confirm Password<span class="req">*</span>
+                        </label>
+                        <input id="confirm-password" name="confirmPassword" type="password" required
+                            autocomplete="off" />
+                    </div>
+
+                    <button type="submit" class="button button-block">Get Started</button>
+
+                </form>
+
+            </div>
+
+            <div id="login">
+                <h1>Welcome Back!</h1>
+
+                <form id="login-form" method="post">
+
+                    <div class="field-wrap">
+                        <label for="login-email">
+                            Email Address<span class="req">*</span>
+                        </label>
+                        <input id="login-email" name="email" type="email" required autocomplete="off" />
+                    </div>
+
+                    <div class="field-wrap">
+                        <label for="login-password">
+                            Password<span class="req">*</span>
+                        </label>
+                        <input id="login-password" name="password" type="password" required autocomplete="off" />
+                    </div>
+
+                    <p class="forgot"><a href="#">Forgot Password?</a></p>
+
+                    <button type="submit" class="button button-block">Log In</button>
+
+                </form>
+
+            </div>
+
+        </div><!-- tab-content -->
+
+    </div> <!-- /form -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./assets/js/scriptLogin.js"></script>
+
+    <script>
+        $('#register-form').on('submit', function (e) {
+            e.preventDefault();
+
+            const username = $('#register-username').val();
+            const email = $('#register-email').val();
+            const password = $('#register-password').val();
+            const confirmPassword = $('#confirm-password').val();
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            console.log('Registering:', {
+                username,
+                email,
+                password
+            }); // Add this line
+
+            $.post('/register', {
+                    username,
+                    email,
+                    password
+                })
+                .done(function (response) {
+                    console.log('Registration successful:', response);
+                    sessionStorage.setItem('userRole', 'customer');
+                    sessionStorage.setItem('username', response.username);
+                    window.location.href = 'index.html';
+                })
+                .fail(function (error) {
+                    console.error('Registration failed:', error);
+                    alert('Registration failed. Please try again.');
+                });
+        });
+
+        $('#login-form').on('submit', function (e) {
+            e.preventDefault();
+
+            const email = $('#login-email').val();
+            const password = $('#login-password').val();
+
+            console.log('Logging in:', {
+                email,
+                password
+            }); // Add this line
+
+            $.post('/login', {
+                    email,
+                    password
+                })
+                .done(function (response) {
+                    console.log('Login successful:', response);
+                    sessionStorage.setItem('userRole', response.role);
+                    sessionStorage.setItem('username', response.username);
+                    window.location.href = 'index.html';
+                })
+                .fail(function (error) {
+                    console.error('Login failed:', error);
+                    alert('Login failed. Please check your credentials and try again.');
+                });
+        });
+    </script>
+
+</body>
+
+</html>

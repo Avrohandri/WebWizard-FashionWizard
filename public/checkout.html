@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fashion Wizard | Checkout</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="shortcut icon" href="./assets/images/logo.jpeg" type="image/svg+xml">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="./assets/css/checkout.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Bottom Bar Start -->
+    <div class="bottom-bar">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="search">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="./assets/images/logo.jpeg" alt="Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="user">
+                        <a href="cart.html" class="btn cart">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bottom Bar End -->
+
+    <!-- Checkout Start -->
+    <div class="checkout">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="checkout-inner">
+                        <form id="checkout-form">
+                            <div class="billing-address">
+                                <h2>Billing Address</h2>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>First Name</label>
+                                        <input class="form-control" type="text" placeholder="First Name" id="firstName"
+                                            required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Last Name</label>
+                                        <input class="form-control" type="text" placeholder="Last Name" id="lastName"
+                                            required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>E-mail</label>
+                                        <input class="form-control" type="email" placeholder="E-mail" id="email"
+                                            required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Mobile No</label>
+                                        <input class="form-control" type="text" placeholder="Mobile No" id="mobileNo"
+                                            required>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>Address</label>
+                                        <input class="form-control" type="text" placeholder="Address" id="address"
+                                            required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Country</label>
+                                        <input class="form-control" type="text" placeholder="Country" id="country"
+                                            required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>City</label>
+                                        <input class="form-control" type="text" placeholder="City" id="city" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>State</label>
+                                        <input class="form-control" type="text" placeholder="State" id="state" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>ZIP Code</label>
+                                        <input class="form-control" type="text" placeholder="ZIP Code" id="zipCode"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="cart-items-section">
+                            <h2>Cart Items</h2>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cart-items">
+                                        <!-- Cart items will be injected here by JavaScript -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="checkout-inner">
+                        <div class="checkout-summary">
+                            <h1>Cart Total</h1>
+                            <p class="sub-total">Sub Total<span id="sub-total">Rp. 0</span></p>
+                            <p class="ship-cost">Shipping Cost<span>Rp. 25,000</span></p>
+                            <h2>Grand Total<span id="grand-total">Rp. 0</span></h2>
+                        </div>
+                        <button class="btn btn-primary btn-block" type="button" onclick="showConfirmModal()">Proceed to
+                            Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Checkout End -->
+
+    <!-- Modal Confirm Order -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel">Confirm Order</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="billing-address">
+                        <h2>Billing Address</h2>
+                        <p id="confirm-firstName"></p>
+                        <p id="confirm-lastName"></p>
+                        <p id="confirm-email"></p>
+                        <p id="confirm-mobileNo"></p>
+                        <p id="confirm-address"></p>
+                        <p id="confirm-country"></p>
+                        <p id="confirm-city"></p>
+                        <p id="confirm-state"></p>
+                        <p id="confirm-zipCode"></p>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="confirm-cart-items">
+                                <!-- Cart items will be injected here by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="checkout-summary">
+                        <h1>Order Summary</h1>
+                        <p class="sub-total">Sub Total : <span id="confirm-sub-total">Rp. 0</span></p>
+                        <p class="ship-cost">Shipping Cost : <span>Rp. 25,000</span></p>
+                        <h2>Grand Total : <span id="confirm-grand-total">Rp. 0</span></h2>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="showPaymentModal()">Confirm Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Confirm Order End -->
+
+    <!-- Modal Payment -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paymentModalLabel">Payment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h2>Payment Methods</h2>
+                    <div class="payment-methods">
+                        <div class="payment-method">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="payment-1" name="payment">
+                                <label class="custom-control-label" for="payment-1">Paypal</label>
+                            </div>
+                            <div class="payment-content" id="payment-1-show">
+                                <p>
+                                    Pay with your PayPal account.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="payment-2" name="payment">
+                                <label class="custom-control-label" for="payment-2">Credit Card</label>
+                            </div>
+                            <div class="payment-content" id="payment-2-show">
+                                <p>
+                                    Pay with your credit card.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="payment-3" name="payment">
+                                <label class="custom-control-label" for="payment-3">Bank Transfer</label>
+                            </div>
+                            <div class="payment-content" id="payment-3-show">
+                                <p>
+                                    Pay via bank transfer.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="payment-method">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" id="payment-4" name="payment">
+                                <label class="custom-control-label" for="payment-4">Cash on Delivery</label>
+                            </div>
+                            <div class="payment-content" id="payment-4-show">
+                                <p>
+                                    Pay with cash upon delivery.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="completePayment()">Complete Payment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Payment End -->
+
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col text-center">
+                    <p>Fashion Wizard</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script>
+        function formatRupiah(amount) {
+            return 'Rp. ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        function loadCartFromLocalStorage() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            cartItemsContainer.innerHTML = '';
+
+            let subTotal = 0;
+
+            cartItems.forEach(item => {
+                const row = document.createElement('tr');
+                const total = item.price * item.quantity;
+                subTotal += total;
+
+                row.innerHTML = `
+                    <td>
+                        <div class="img">
+                            <a href="product.html?name=${encodeURIComponent(item.title)}"><img src="${item.imgSrc}" alt="Image" class="cart-img"></a>
+                            <p>${item.title}</p>
+                        </div>
+                    </td>
+                    <td class="price">${formatRupiah(item.price)}</td>
+                    <td class="quantity">${item.quantity}</td>
+                    <td class="total">${formatRupiah(total)}</td>
+                `;
+                cartItemsContainer.appendChild(row);
+            });
+
+            document.getElementById('sub-total').textContent = formatRupiah(subTotal);
+            document.getElementById('grand-total').textContent = formatRupiah(subTotal +
+                25000); // 25,000 for shipping cost
+        }
+
+        function showConfirmModal() {
+            const form = document.getElementById('checkout-form');
+            if (form.checkValidity() === false) {
+                form.reportValidity();
+                return;
+            }
+
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartItemsContainer = document.getElementById('confirm-cart-items');
+            cartItemsContainer.innerHTML = '';
+
+            let subTotal = 0;
+
+            cartItems.forEach(item => {
+                const row = document.createElement('tr');
+                const total = item.price * item.quantity;
+                subTotal += total;
+
+                row.innerHTML = `
+                    <td>
+                        <div class="img">
+                            <a href="product.html?name=${encodeURIComponent(item.title)}"><img src="${item.imgSrc}" alt="Image" class="cart-img"></a>
+                            <p>${item.title}</p>
+                        </div>
+                    </td>
+                    <td class="price">${formatRupiah(item.price)}</td>
+                    <td class="quantity">${item.quantity}</td>
+                    <td class="total">${formatRupiah(total)}</td>
+                `;
+                cartItemsContainer.appendChild(row);
+            });
+
+            document.getElementById('confirm-sub-total').textContent = formatRupiah(subTotal);
+            document.getElementById('confirm-grand-total').textContent = formatRupiah(subTotal +
+                25000); // 25,000 for shipping cost
+
+            // Menampilkan alamat tagihan di modal konfirmasi
+            document.getElementById('confirm-firstName').textContent =
+                `First Name: ${document.getElementById('firstName').value}`;
+            document.getElementById('confirm-lastName').textContent =
+                `Last Name: ${document.getElementById('lastName').value}`;
+            document.getElementById('confirm-email').textContent = `Email: ${document.getElementById('email').value}`;
+            document.getElementById('confirm-mobileNo').textContent =
+                `Mobile No: ${document.getElementById('mobileNo').value}`;
+            document.getElementById('confirm-address').textContent =
+                `Address: ${document.getElementById('address').value}`;
+            document.getElementById('confirm-country').textContent =
+                `Country: ${document.getElementById('country').value}`;
+            document.getElementById('confirm-city').textContent = `City: ${document.getElementById('city').value}`;
+            document.getElementById('confirm-state').textContent = `State: ${document.getElementById('state').value}`;
+            document.getElementById('confirm-zipCode').textContent =
+                `ZIP Code: ${document.getElementById('zipCode').value}`;
+
+            $('#confirmModal').modal('show');
+        }
+
+        function showPaymentModal() {
+            $('#confirmModal').modal('hide');
+            $('#paymentModal').modal('show');
+        }
+
+        function completePayment() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const billingDetails = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                mobileNo: document.getElementById('mobileNo').value,
+                address: document.getElementById('address').value,
+                country: document.getElementById('country').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                zipCode: document.getElementById('zipCode').value
+            };
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').nextElementSibling.textContent
+                .trim();
+
+            // Menyimpan data pelanggan terlebih dahulu
+            fetch('/api/customers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        customer_name: `${billingDetails.firstName} ${billingDetails.lastName}`,
+                        email: billingDetails.email,
+                        phone: billingDetails.mobileNo,
+                        address: billingDetails.address,
+                        city: billingDetails.city,
+                        state: billingDetails.state,
+                        postal_code: billingDetails.zipCode,
+                        country: billingDetails.country
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    const customerId = data.customerId;
+
+                    // Setelah data pelanggan berhasil disimpan, simpan data order
+                    const order = {
+                        customer_id: customerId,
+                        customer_name: `${billingDetails.firstName} ${billingDetails.lastName}`,
+                        total_amount: parseFloat(document.getElementById('grand-total').textContent.replace(
+                            /[^\d]/g, '')),
+                        shipping_address: `${billingDetails.address}, ${billingDetails.city}, ${billingDetails.state}, ${billingDetails.zipCode}, ${billingDetails.country}`,
+                        payment_method: paymentMethod,
+                        product: cartItems.map(item => `${item.title} (x${item.quantity})`).join(', ')
+                    };
+
+                    return fetch('/api/orders', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(order)
+                    });
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Payment completed successfully!');
+                    $('#paymentModal').modal('hide');
+                    // Kosongkan keranjang setelah checkout
+                    localStorage.removeItem('cartItems');
+                    // Redirect ke halaman thank you
+                    window.location.href = 'thank-you.html';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('There was an error processing your order. Please try again.');
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadCartFromLocalStorage();
+        });
+    </script>
+
+    <style>
+        .cart-items-section .cart-img {
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</body>
+
+</html>

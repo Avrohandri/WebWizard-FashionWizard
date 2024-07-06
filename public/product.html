@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .product-detail {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="product-detail">
+        <h1 id="product-name">Product Name</h1>
+        <p id="product-description">Description: </p>
+        <p id="product-price">Price: </p>
+        <p id="product-stock">Stock: </p>
+        <p id="product-size">Size: </p>
+        <p id="product-color">Color: </p>
+    </div>
+    <script>
+        async function fetchProductDetails() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productName = urlParams.get('name');
+
+            try {
+                const response = await fetch(`/productpageurl?name=${encodeURIComponent(productName)}`);
+                if (!response.ok) {
+                    throw new Error('Product not found');
+                }
+                const product = await response.json();
+
+                document.getElementById('product-name').textContent = product.name;
+                document.getElementById('product-description').textContent = 'Description: ' + product.description;
+                document.getElementById('product-price').textContent = 'Price: ' + product.price;
+                document.getElementById('product-stock').textContent = 'Stock: ' + product.stock;
+                document.getElementById('product-size').textContent = 'Size: ' + product.size;
+                document.getElementById('product-color').textContent = 'Color: ' + product.color;
+            } catch (error) {
+                console.error(error);
+                document.querySelector('.product-detail').textContent = 'Product not found.';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', fetchProductDetails);
+    </script>
+</body>
+</html>

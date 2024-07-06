@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FashionWizard | Shopping center</title>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./assets/images/logo.jpeg" type="image/svg+xml">
+
+    <!-- custom css link -->
+    <link rel="stylesheet" href="./assets/css/stylesLandingPage.css">
+    <!-- <link rel="stylesheet" href="./styles.css"> -->
+    <!-- <link rel="stylesheet" href="../../ecommerce-backend/public/styles.css"> -->
+
+    <!-- google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- 
+    - #HEADER
+  -->
+
+    <header class="header" data-header>
+        <div class="container">
+
+            <div class="overlay" data-overlay></div>
+
+            <div class="header-search">
+            </div>
+
+            <a href="#" class="logo">
+                <img src="./assets/images/logonobg.png" alt="FashionWizard logo" width="220" height="40">
+            </a>
+
+            <div class="header-actions">
+
+                <a class="header-action-btn" href="./login.html">
+                    <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+
+                    <p class="header-action-label">Sign in</p>
+                </a>
+
+                <button class="header-action-btn">
+                    <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
+
+                    <p class="header-action-label">Search</p>
+                </button>
+
+                <a class="header-action-btn" href="./cart.html">
+                    <ion-icon name="cart-outline" aria-hidden="true"></ion-icon>
+
+                    <p class="header-action-label">Cart</p>
+                </a>
+
+            </div>
+
+            <button class="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="navbar" data-navbar>
+
+                <div class="navbar-top">
+
+                    <a href="#" class="logo">
+                        <img src="./assets/images/logo.svg" alt=" logo" width="130" height="31">
+                    </a>
+
+                    <button class="nav-close-btn" data-nav-close-btn aria-label="Close Menu">
+                        <ion-icon name="close-outline"></ion-icon>
+                    </button>
+
+                </div>
+
+                <ul class="navbar-list">
+
+                    <li>
+                        <a href="#home" class="navbar-link">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#shop" class="navbar-link">Shop</a>
+                    </li>
+
+                    <li>
+                        <a href="#about" class="navbar-link">About</a>
+                    </li>
+
+                    <li id="dashboard-link"><a href="./index_owner.html" class="navbar-link">Dashboard</a></li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+        <article>
+
+            <!-- 
+        - #HERO
+-->
+
+            <section class="hero" id="home" style="background-image: url('./assets/images/hero-banner.jpg')">
+                <div class="container">
+
+                    <div class="hero-content">
+
+                        <p class="hero-subtitle">Fashion Everyday</p>
+
+                        <h2 class="h1 hero-title"> Find Perfect Outfits Now</h2>
+
+                        <a href="./all-product.html" class="btn btn-primary">Shop Now</a>
+
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- 
+        - #SERVICE
+      -->
+
+            <section class="service" id="shop">
+                <div class="container">
+
+                    <ul class="service-list">
+
+                        <li class="service-item">
+                            <div class="service-item-icon">
+                                <img src="./assets/images/service-icon-1.svg" alt="Service icon">
+                            </div>
+
+                            <div class="service-content">
+                                <p class="service-item-title">Free Shipping</p>
+
+                                <p class="service-item-text">Throughout Indonesia</p>
+                            </div>
+                        </li>
+
+                        <li class="service-item">
+                            <div class="service-item-icon">
+                                <img src="./assets/images/service-icon-2.svg" alt="Service icon">
+                            </div>
+
+                            <div class="service-content">
+                                <p class="service-item-title">Easy Returns</p>
+
+                                <p class="service-item-text">10 Day Returns Policy</p>
+                            </div>
+                        </li>
+
+                        <li class="service-item">
+                            <div class="service-item-icon">
+                                <img src="./assets/images/service-icon-3.svg" alt="Service icon">
+                            </div>
+
+                            <div class="service-content">
+                                <p class="service-item-title">Secure Payment</p>
+
+                                <p class="service-item-text">100% Secure Gaurantee</p>
+                            </div>
+                        </li>
+
+                        <li class="service-item">
+                            <div class="service-item-icon">
+                                <img src="./assets/images/service-icon-4.svg" alt="Service icon">
+                            </div>
+
+                            <div class="service-content">
+                                <p class="service-item-title">Special Support</p>
+
+                                <p class="service-item-text">24/7 Dedicated Support</p>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </section>
+
+            <!-- 
+        - #CATEGORY
+      -->
+
+            <section class="section category">
+                <div class="container">
+
+                    <ul class="category-list">
+
+                        <li class="category-item">
+                            <figure class="category-banner">
+                                <img src="./assets/images/category-1.jpg" alt="Premium Clothes" loading="lazy"
+                                    width="510" height="600" class="w-100">
+                            </figure>
+
+                            <!-- <a href="#" class="btn btn-secondary">Premium Clothes</a> -->
+                        </li>
+
+                        <li class="category-item">
+                            <figure class="category-banner">
+                                <img src="./assets/images/category-2.jpg" alt="Pants & Jeans" loading="lazy" width="510"
+                                    height="600" class="w-100">
+                            </figure>
+
+                            <!-- <a href="#" class="btn btn-secondary">Pants & Jeans</a> -->
+                        </li>
+
+                        <li class="category-item">
+                            <figure class="category-banner">
+                                <img src="./assets/images/category-3.jpg" alt="Bags" loading="lazy" width="510"
+                                    height="600" class="w-100">
+                            </figure>
+
+                            <!-- <a href="#" class="btn btn-secondary">Bags</a> -->
+                        </li>
+
+                        <li class="category-item">
+                            <figure class="category-banner">
+                                <img src="./assets/images/category-4.jpg" alt="Exclusive footwear" loading="lazy"
+                                    width="510" height="600" class="w-100">
+                            </figure>
+
+                            <!-- <a href="#" class="btn btn-secondary">Exclusive Footwear</a> -->
+                        </li>
+
+                        <li class="category-item">
+                            <figure class="category-banner">
+                                <img src="./assets/images/category-5.jpg" alt="Wristwatch" loading="lazy" width="510"
+                                    height="600" class="w-100">
+                            </figure>
+
+                            <!-- <a href="#" class="btn btn-secondary">Wristwatch</a> -->
+                        </li>
+
+                        <li class="category-item">
+                            <figure class="category-banner">
+                                <img src="./assets/images/category-6.jpg" alt="Sports cap" loading="lazy" width="510"
+                                    height="600" class="w-100">
+                            </figure>
+
+                            <!-- <a href="#" class="btn btn-secondary">Sports Cap</a> -->
+                        </li>
+
+                    </ul>
+
+                </div>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- Chatbot -->
+
+    <div class="chatbot-widget" id="chatbot">
+        <div class="chatbot-header">
+            <div class="chatbot-title">Wizard's Assistant</div>
+            <button class="chatbot-close" onclick="toggleChatbot()">×</button>
+        </div>
+        <div class="chatbot-profile">
+            <img src="./assets/images/asisstant-virtual.jpg" alt="Profile Picture" class="profile-pic">
+            <div class="profile-name">Wizard's Assistant</div>
+            <div class="profile-desc">I can help with info on our website and advices!</div>
+        </div>
+        <div class="chatbot-body" id="chatbot-body">
+            <div class="timestamp today">Today</div>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbot-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+            <button onclick="resetChat()">&#x21bb;</button>
+            <button id="voice-btn" onclick="toggleVoiceRecognition()">🎤</button>
+        </div>
+    </div>
+    <button class="chatbot-toggle" id="chatbot-toggle" onclick="toggleChatbot()">Chat with us!</button>
+
+
+    <!-- 
+    - #FOOTER
+  -->
+
+    <footer class="footer" id="about">
+
+        <div class="footer-top">
+            <div class="container">
+
+                <div class="footer-brand">
+
+                    <a href="#" class="logo">
+                        <img src="./assets/images/logonobg.png" alt="FashionWizard logo" width="200" height="40">
+                    </a>
+
+                    <p class="footer-text">
+                        Fashion Wizard is a fashion theme for presents a complete wardrobe of uniquely crafted Ethnic
+                        Wear, Casuals,
+                        Edgy
+                        Denims, & Accessories inspired from the most contemporary
+                    </p>
+
+                    <ul class="social-list">
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-facebook"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-twitter"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-instagram"></ion-icon>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" class="social-link">
+                                <ion-icon name="logo-pinterest"></ion-icon>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">
+                &copy; 2024 <a href="#">Web Wizard</a>. All Rights Reserved
+            </p>
+            <div class="container">
+
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div id="back-to-top-container">
+        <button onclick="backToTop()" id="back-to-top-btn" title="Go to top">
+            <ion-icon name="arrow-up-outline"></ion-icon>
+        </button>
+    </div>
+
+    <script>
+        // Function to scroll to the top of the document
+        function backToTop() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+
+        // Show or hide the button based on scroll position
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            var btn = document.getElementById("back-to-top-btn");
+
+            // Show button when user scrolls down 300px from the top of the document
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        }
+    </script>
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const userRole = sessionStorage.getItem('userRole');
+            const dashboardLink = document.getElementById('dashboard-link');
+
+            if (userRole === 'customer') {
+                dashboardLink.style.display = 'none';
+            } else if (userRole === 'owner') {
+                dashboardLink.querySelector('a').setAttribute('href', './index_owner.html');
+            } else if (userRole === 'admin') {
+                dashboardLink.querySelector('a').setAttribute('href', './index_admin.html');
+            }
+        });
+    </script> -->
+
+    <!-- 
+    - custom js link
+  -->
+    <script src="./assets/js/script.js"></script>
+    <!-- <script src="assets/js/chatbot.js"></script> -->
+    <!-- <script src="./scriptLandingPage.js"></script> -->
+
+    <!-- 
+    - ionicon link
+  -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Fashion Wizard | Payment</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="shortcut icon" href="./assets/images/logo.jpeg" type="image/svg+xml">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="./assets/css/payment.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Bottom Bar Start -->
+    <div class="bottom-bar">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="./assets/images/logo.jpeg" alt="Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="user">
+                        <a href="cart.html" class="btn cart">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bottom Bar End -->
+
+    <!-- Payment Start -->
+    <div class="payment">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="payment-inner">
+                        <h2>Payment</h2>
+                        <div class="payment-methods">
+                            <div class="payment-method">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="payment-1" name="payment"
+                                        value="Paypal">
+                                    <label class="custom-control-label" for="payment-1">Paypal</label>
+                                </div>
+                            </div>
+                            <div class="payment-method">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="payment-2" name="payment"
+                                        value="Kartu Kredit">
+                                    <label class="custom-control-label" for="payment-2">Kartu Kredit</label>
+                                </div>
+                            </div>
+                            <div class="payment-method">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="payment-3" name="payment"
+                                        value="Transfer Bank">
+                                    <label class="custom-control-label" for="payment-3">Transfer Bank</label>
+                                </div>
+                            </div>
+                            <div class="payment-method">
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" class="custom-control-input" id="payment-4" name="payment"
+                                        value="Bayar di Tempat">
+                                    <label class="custom-control-label" for="payment-4">Bayar di Tempat</label>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" onclick="submitPayment()">Submit Payment</button>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="checkout-summary">
+                        <h1>Order Summary</h1>
+                        <p class="sub-total">Sub Total<span id="sub-total">Rp. 0</span></p>
+                        <p class="ship-cost">Shipping Cost<span>Rp. 25,000</span></p>
+                        <h2>Grand Total<span id="grand-total">Rp. 0</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Payment End -->
+
+    <!-- Footer Start -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col text-center">
+                    <p>Fashion Wizard</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script>
+        function formatRupiah(amount) {
+            return 'Rp. ' + amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        function loadOrderSummary() {
+            const orderItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let subTotal = 0;
+
+            orderItems.forEach(item => {
+                subTotal += item.price * item.quantity;
+            });
+
+            document.getElementById('sub-total').textContent = formatRupiah(subTotal);
+            document.getElementById('grand-total').textContent = formatRupiah(subTotal +
+            25000); // 25,000 for shipping cost
+        }
+
+        function submitPayment() {
+            const selectedPaymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            const billingDetails = JSON.parse(localStorage.getItem('billingDetails'));
+            const orderItems = JSON.parse(localStorage.getItem('cartItems'));
+
+            const orderData = {
+                customer_id: 1, // Replace with actual customer ID
+                total_amount: parseFloat(document.getElementById('grand-total').textContent.replace(/[^\d]/g, '')),
+                shipping_address: `${billingDetails.address}, ${billingDetails.city}, ${billingDetails.state}, ${billingDetails.country}, ${billingDetails.zipCode}`,
+                payment_method: selectedPaymentMethod,
+                products: orderItems
+            };
+
+            fetch('/api/create-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(orderData)
+            }).then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok.');
+            }).then(data => {
+                console.log('Order created successfully:', data);
+                localStorage.removeItem('cartItems');
+                window.location.href = 'order-history.html';
+            }).catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            loadOrderSummary();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            font-size: 24px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .back-button i {
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="goBack()" class="back-button">
+        <i class='fas fa-chevron-left'></i>
+    </button>
+
+    <div class="main-wrapper">
+        <div class="container">
+            <div class="product-div">
+                <div class="product-div-left">
+                    <div class="img-container">
+                        <img id="product-image" src="" alt="Product Image">
+                    </div>
+                </div>
+                <div class="product-div-right">
+                    <span id="product-name" class="product-name"></span>
+                    <span id="product-price" class="product-price"></span>
+                    <p id="product-description" class="product-description"></p>
+
+                    <!-- Size Selector -->
+                    <div class="size-selector">
+                        <label for="size">Size </label>
+                        <select id="size" class="size-dropdown">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+
+                    <div class="btn-groups">
+                        <button type="button" class="add-cart-btn"><i class="fas fa-shopping-cart"></i> Add to
+                            cart</button>
+                        <!-- <button type="button" class="buy-now-btn"><i class="fas fa-wallet"></i> Buy now</button> -->
+                        <button type="button" class="fit-assistant-btn"><i class="fas fa-ruler-combined"></i> Fit
+                            assistant</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="fit-assistant-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Fit Assistant</h2>
+            <p>Temukan pakaian yang PAS untukmu</p>
+            <label for="age">UMUR (tahun)</label>
+            <input type="number" id="age" min="1" max="120">
+
+            <label for="height">TINGGI (cm)</label>
+            <input type="number" id="height" min="1" max="300">
+
+            <label for="weight">BERAT (kg)</label>
+            <input type="number" id="weight" min="1" max="300">
+
+            <button type="button" class="continue-btn">Continue</button>
+
+            <div id="size-result" style="display:none; margin-top: 20px;">
+                <h3>Recommended Size: <span id="recommended-size"></span></h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="./assets/js/scriptProduct.js"></script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+
+</html>
